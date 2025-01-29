@@ -3,23 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>dz-11</title>
+    <title>dz-12</title>
     <script type="module" crossorigin src="/goit-js-hw-12/index.js"></script>
-    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-5ObWk2rO.js">
+    <link rel="modulepreload" crossorigin href="/goit-js-hw-12/assets/vendor-DEenWwFD.js">
     <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/vendor-DumFYO8Z.css">
-    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-DMUfcrqE.css">
+    <link rel="stylesheet" crossorigin href="/goit-js-hw-12/assets/index-C_CwCGwP.css">
   </head>
   <body>
       <div class="container">
         <form class="search-form js-search-form" autocomplete="off">
-          <input type="text" class="search-input js-search-input" name="user_query" placeholder="Search images..." />
+          <input type="text" class="search-input js-search-input" name="user_query" placeholder="Search images..." required/>
           <button type="submit" class="search-btn">Search</button>
         </form>
         <div class="loader-container">
-          <span class="loader is-hidden"></span>
+          <span class="loader is-hidden">Loading images, please wait...</span>
         </div>
         <ul class="gallery js-gallery"></ul>
+        <button type="button" class="load-btn js-load-btn is-hidden">Load more</button>
       </div>
+
+      
+      
     
   </body>
 </html>
