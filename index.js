@@ -1,16 +1,26 @@
-import{a as L,S as v,i as l}from"./assets/vendor-DEenWwFD.js";(function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))a(t);new MutationObserver(t=>{for(const o of t)if(o.type==="childList")for(const u of o.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&a(u)}).observe(document,{childList:!0,subtree:!0});function s(t){const o={};return t.integrity&&(o.integrity=t.integrity),t.referrerPolicy&&(o.referrerPolicy=t.referrerPolicy),t.crossOrigin==="use-credentials"?o.credentials="include":t.crossOrigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function a(t){if(t.ep)return;t.ep=!0;const o=s(t);fetch(t.href,o)}})();const g=e=>{const s=[{title:"Likes",value:e.likes},{title:"Views",value:e.views},{title:"Comments",value:e.comments},{title:"Downloads",value:e.downloads}].map(a=>`
-        <div class="gallery-item">
-          <p class="gallery-title">${a.title}</p>
-          <p class="gallery-count">${a.value}</p>
-        </div>`).join("");return`
+import{a as w,S as v,i as h}from"./assets/vendor-DEenWwFD.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const d of r.addedNodes)d.tagName==="LINK"&&d.rel==="modulepreload"&&i(d)}).observe(document,{childList:!0,subtree:!0});function a(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(e){if(e.ep)return;e.ep=!0;const r=a(e);fetch(e.href,r)}})();const p=t=>`
     <li class="gallery-card">
-      <article class="card">
-        <a class="gallery-link" href="${e.largeImageURL}" target="_blank" rel="noopener noreferrer">
-          <img class="gallery-img" src="${e.webformatURL}" alt="${e.tags}" />
-        </a>
-        <div class="gallery-container">
-          ${s}
-        </div>
-      </article>
-    </li>`},h=(e,r)=>{const s={params:{q:e,key:"48348047-29f6f569c2c15fdf8af3c5251",image_type:"photo",orientation:"horizontal",safesearch:"true",page:r,per_page:15}};return L.get("https://pixabay.com/api/",s)},p=document.querySelector(".js-search-form"),m=document.querySelector(".js-gallery"),n=document.querySelector(".loader"),d=document.querySelector(".js-load-btn");let i=1,c="";const y=new v(".js-gallery a",{captionDelay:300,captionsData:"alt"}),w=async e=>{try{if(e.preventDefault(),c=e.currentTarget.elements.user_query.value.trim(),c===""){e.currentTarget.reset(),l.error({message:"Please enter your request",position:"topRight"});return}i=1,d.classList.add("is-hidden"),n.classList.remove("is-hidden");const s=(await h(c,i)).data;if(s.totalHits===0){n.classList.add("is-hidden"),l.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),m.innerHTML="",p.reset();return}s.totalHits>i*15&&d.classList.remove("is-hidden"),m.innerHTML=s.hits.map(a=>g(a)).join(""),n.classList.add("is-hidden"),f(),y.refresh(),p.reset()}catch(r){n.classList.add("is-hidden"),l.error({message:"Something went wrong. Please try again later.",position:"topRight"}),console.error("Error fetching photos:",r)}},b=async()=>{try{i++;const r=(await h(c,i)).data,s=r.hits.map(a=>g(a)).join("");m.insertAdjacentHTML("beforeend",s),f(),y.refresh(),i*15>=r.totalHits&&d.classList.add("is-hidden")}catch(e){n.classList.add("is-hidden"),l.error({message:"Error loading more images",position:"topRight"}),console.error("Error loading more images:",e)}};function f(){const e=document.querySelector(".gallery-card");if(!e)return;const r=e.getBoundingClientRect().height;window.scrollBy({top:r*2,behavior:"smooth"})}p.addEventListener("submit",w);d.addEventListener("click",b);
+      <a class="gallery-link" href="${t.largeImageURL}">
+        <img class="gallery-img" src="${t.webformatURL}" alt="${t.tags}" />
+      </a>
+      <ul class="text-info">
+        <li class="image-info">
+          <h4>Likes</h4>
+          <p>${t.likes}</p>
+        </li>
+        <li class="image-info">
+          <h4>Views</h4>
+          <p>${t.views}</p>
+        </li>
+        <li class="image-info">
+          <h4>Comments</h4>
+          <p>${t.comments}</p>
+        </li>
+        <li class="image-info">
+          <h4>Downloads</h4>
+          <p>${t.downloads}</p>
+        </li>
+      </ul>
+    </li>
+  `,f=(t,s)=>{const a=new URLSearchParams({q:t,key:"48348047-29f6f569c2c15fdf8af3c5251",image_type:"photo",orientation:"horizontal",safesearch:!0,page:s,per_page:15});return w.get(`https://pixabay.com/api/?${a}`)},u=document.querySelector(".js-search-form"),m=document.querySelector(".js-gallery"),c=document.querySelector(".loader"),o=document.querySelector(".js-load-btn");let l=1,n="",b=15,g=0;o.classList.add("is-hidden");const y=new v(".js-gallery a",{captionDelay:300,captionsData:"alt"}),S=async t=>{try{if(t.preventDefault(),n=u.elements[0].value.trim(),n===""){h.error({message:"Please enter your request",position:"topRight"});return}l=1,o.classList.add("is-hidden"),c.classList.add("show-loader");const{data:s}=await f(n,l);if(g=s.totalHits,s.total===0){h.error({message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"}),m.innerHTML="",u.reset();return}s.totalHits>1&&(o.classList.remove("is-hidden"),o.addEventListener("click",L));const a=s.hits.map(i=>p(i)).join("");m.innerHTML=a,y.refresh()}catch(s){console.log(s)}finally{c.classList.remove("show-loader")}};u.addEventListener("submit",S);const L=async()=>{try{c.classList.add("show-loader"),l++;const{data:t}=await f(n,l),s=t.hits.map(e=>p(e)).join("");m.insertAdjacentHTML("beforeend",s),y.refresh(),c.classList.remove("show-loader");let i=document.querySelector(".gallery-card").getBoundingClientRect().height;window.scrollBy({top:i*2,behavior:"smooth"}),l*b>=g&&(o.classList.add("is-hidden"),h.info({message:"We're sorry, but you've reached the end of search results.",position:"topRight"}),o.classList.contains("is-hidden")||o.removeEventListener("click",L))}catch(t){console.log(t)}};
 //# sourceMappingURL=index.js.map
